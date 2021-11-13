@@ -11,3 +11,11 @@ const reverseNumber = (number)=>{
     return 0
   return parseInt(number.toString().split('').reverse().join(''))
 }
+
+const recursiveFlatArray = (array,result=[]) => {
+  if(array.length==undefined)
+      result.push(array)
+  else
+    result.concat(array.forEach(arr=>flattenAndSort(arr,result)))
+  return result;
+}
