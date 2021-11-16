@@ -19,3 +19,7 @@ const recursiveFlatArray = (array,result=[]) => {
     result.concat(array.forEach(arr=>flattenAndSort(arr,result)))
   return result;
 }
+
+const factorial = (n) => {
+  return n ? factorial(n - 1) * n : 1;
+}
