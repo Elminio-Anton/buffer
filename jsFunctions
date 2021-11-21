@@ -1,0 +1,19 @@
+let replaceElementsWithEmptyByIndex = (array, ...indexes) => {
+	if (indexes.length === 0) return array
+	indexes.sort((a, b) => a - b)
+	if (indexes[indexes.length - 1] !== array.length - 1) indexes.push(array.length)
+
+	const resultArr = indexes.reduce(
+		(prev, index) => {
+			prev.concatedArr = prev.concatedArr.concat(
+				array.slice(prev.prevIndex, index),
+				new Array(1)
+			)
+			prev.prevIndex = index + 1
+			return prev
+		},
+		{ concatedArr: [], prevIndex: 0 }
+	).concatedArr
+	resultArr.length--
+	return resultArr
+}
