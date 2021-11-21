@@ -25,3 +25,13 @@ let replaceElementsWithEmptyByIndex = (array, ...indexes) => {
 	if (resultArr.length > array.length) resultArr.length--
 	return resultArr
 }
+
+const walkOverTree = (domElement)=>{
+    ///userCode
+    if(domElement.tagName === 'BUTTON')
+    console.log(domElement.tagName,domElement.className)
+    ///
+    if(domElement.children.length === 0)
+        return 0
+    else Array.from(domElement.children).forEach((element)=>walkOverTree(element))
+}
