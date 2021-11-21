@@ -1,9 +1,17 @@
 let replaceElementsWithEmptyByIndex = (array, ...indexes) => {
 	if (indexes.length === 0) return array
-	indexes.sort((a, b) => a - b)
-	if (indexes[indexes.length - 1] !== array.length - 1) indexes.push(array.length)
-
-	const resultArr = indexes.reduce(
+	const correctIndexes = indexes
+		.filter(
+			(index) =>
+				index >= 0 &&
+				index <= array.length - 1 &&
+				typeof index === "number" &&
+				index === index
+		)
+		.sort((a, b) => a - b)
+	if (correctIndexes[correctIndexes.length - 1] !== array.length - 1)
+		correctIndexes.push(array.length)
+	const resultArr = correctIndexes.reduce(
 		(prev, index) => {
 			prev.concatedArr = prev.concatedArr.concat(
 				array.slice(prev.prevIndex, index),
@@ -14,6 +22,6 @@ let replaceElementsWithEmptyByIndex = (array, ...indexes) => {
 		},
 		{ concatedArr: [], prevIndex: 0 }
 	).concatedArr
-	resultArr.length--
+	if (resultArr.length > array.length) resultArr.length--
 	return resultArr
 }
